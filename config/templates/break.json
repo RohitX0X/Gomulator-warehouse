@@ -1,0 +1,22 @@
+{
+    "spanId": "75ab8acf9eea182e",
+    "parentId": "00-b7711856dc0b76969a05005c377ec371-ac00e17998da4996-01",
+    "id": "00-b7711856dc0b76969a05005c377ec371-75ab8acf9eea182e-01",
+    "rootId": "b7711856dc0b76969a05005c377ec371",
+    "parentSpanId": "ac00e17998da4996",
+    "traceId": "b7711856dc0b76969a05005c377ec371",
+    "deviceUniqueId": "1ebb9ffa91d3c1a4",
+    "operatorId": "Jesse0513",
+    "eventName": "break",
+    "siteId": "Demo",
+    "timestamp": "2023-12-06T13:30:34.0060000Z",
+    "subclass": "break",
+    "workType": "Picking",
+    "operation": "stop",
+    "duration": "00:00:00.0450000",
+    "orderNumber": 6,
+    "timezone": "America/New_York",
+    "offset": "-05:00",
+    "eventDetails": "{\"assignmentId\": \"1\"}",
+    "metadata": "{\"deviceOS\": \"Android 9\",\"deviceName\": \"CT60\",\"insights.type\": \"__break\",\"insights.device.serial_number\": \"1ebb9ffa91d3c1a4\",\"insights.device.manufacturer\": \"Honeywell\",\"insights.device.model\": \"CT60\",\"insights.device.os\": \"Android 9\",\"insights.category\": \"IDLE\",\"enduser.id\": \"Jesse0513\"}"
+  }

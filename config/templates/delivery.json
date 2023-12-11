@@ -1,0 +1,23 @@
+{
+    "spanId": "913e4b4b30130e87",
+    "parentId": "00-1bdfcf8c02f25525d83df806d8edec64-4cdcdcbf73189607-01",
+    "id": "00-1bdfcf8c02f25525d83df806d8edec64-913e4b4b30130e87-01",
+    "rootId": "1bdfcf8c02f25525d83df806d8edec64",
+    "parentSpanId": "4cdcdcbf73189607",
+    "traceId": "1bdfcf8c02f25525d83df806d8edec64",
+    "deviceUniqueId": "1ebb9ffa91d3c1a4",
+    "operatorId": "Jesse0712",
+    "eventName": "delivery",
+    "siteId": "Demo",
+    "timestamp": "2023-12-08T03:00:59.2920000Z",
+    "subclass": "travel",
+    "workType": "Picking",
+    "operation": "stop",
+    "duration": "00:00:03.3040000",
+    "orderNumber": 4,
+    "eventType": "workflow",
+    "timezone": "America/New_York",
+    "offset": "-05:00",
+    "eventDetails": "{\"assignmentId\": \"1\"}",
+    "metadata": "{\"deviceOS\": \"Android 9\",\"deviceName\": \"CT60\",\"insights.data.delivery_location\": \"5\",\"insights.type\": \"__delivery\",\"insights.device.serial_number\": \"1ebb9ffa91d3c1a4\",\"insights.device.manufacturer\": \"Honeywell\",\"insights.device.model\": \"CT60\",\"insights.device.os\": \"Android 9\",\"insights.category\": \"PROD\",\"enduser.id\": \"Jesse0712\",\"insights.data.delivered_location\": \"5\",\"insights.data.completed\": \"True\",\"otel.status_code\": \"OK\"}"
+  }

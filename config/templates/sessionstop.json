@@ -1,0 +1,23 @@
+{
+    "spanId": "84bc22098ce97e30",
+    "parentId": "null",
+    "id": "00-b7711856dc0b76969a05005c377ec371-84bc22098ce97e30-01",
+    "rootId": "b7711856dc0b76969a05005c377ec371",
+    "parentSpanId": "0000000000000000",
+    "traceId": "b7711856dc0b76969a05005c377ec371",
+    "deviceUniqueId": "1ebb9ffa91d3c1a4",
+    "operatorId": "Jesse0513",
+    "eventName": "session",
+    "siteId": "Demo",
+    "timestamp": "2023-12-06T13:24:58.4380000Z",
+    "subclass": "container",
+    "workType": "Picking",
+    "operation": "stop",
+    "duration": "00:10:14.6170000",
+    "orderNumber": 12,
+    "eventType": "workflow",
+     "timezone": "America/New_York",
+    "offset": "-05:00",
+    "eventDetails": "{\"assignmentId\": \"1\"}",
+    "metadata": "{\"deviceOS\": \"Android 9\",\"deviceName\": \"CT60\",\"insights.type\": \"__session\",\"insights.device.serial_number\": \"1ebb9ffa91d3c1a4\",\"insights.device.manufacturer\": \"Honeywell\",\"insights.device.model\": \"CT60\",\"insights.device.os\": \"Android 9\",\"enduser.id\": \"Jesse0513\",\"insights.app.version\": \"GWSApp3.4.0-dev\",\"insights.app.settings.mode\": \"embedded\",\"insights.app.settings.embedded.plugin_name\": \"GWSInsights (InMemory)\",\"insights.app.settings.embedded.plugin_version\": \"1.0.0.0\",\"otel.status_code\": \"OK\"}"
+  }

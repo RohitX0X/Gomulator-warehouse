@@ -1,0 +1,10 @@
+{
+    "0": "sessionstart",
+    "1": "sessionstop",
+    "2": "assignmentstart",
+    "3": "assignmentstop",
+    "4": "pick",
+    "5": "travel",
+    "6": "delivery",
+    "7": "break"
+}
