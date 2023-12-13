@@ -1,26 +1,27 @@
 // eventhub_connect.go
 
-package eventhub
+package src
 
 import (
-	"context"
 	"encoding/json"
-	"fmt"
-	"math/rand"
+	"net/http"
 	"os"
 	"path/filepath"
-	"time"
 )
 
-const operatorstring string = "operator"
+type eventsequence struct {
+	Id               string `json:"id"`
+	Workflowsequence []int  `json:"workflowsequence"`
+}
 
-// PushToEventHub sends data to an Azure Event Hub.
-func loadData(id string) error {
-	s1 := rand.NewSource(time.Now().UnixNano())
-	r1 := rand.New(s1)
+// loads data,mapping before sending to an Azure Event Hub.
+func LoadData(w http.ResponseWriter, r *http.Request, id string) error {
 
 	filePath := filepath.Join("..", "config", "templates")
 	assignmentstartcontent, err := os.ReadFile(filepath.Join(filePath, "assignmentstart.json"))
+	if err != nil {
+		panic(err)
+	}
 	assignmentstopcontent, err := os.ReadFile(filepath.Join(filePath, "assignmentstop.json"))
 	sessionstartcontent, err := os.ReadFile(filepath.Join(filePath, "sessionstart.json"))
 	sessionstopcontent, err := os.ReadFile(filepath.Join(filePath, "sessionstop.json"))
@@ -28,6 +29,13 @@ func loadData(id string) error {
 	travelcontent, err := os.ReadFile(filepath.Join(filePath, "travel.json"))
 	breakcontent, err := os.ReadFile(filepath.Join(filePath, "break.json"))
 	deliverycontent, err := os.ReadFile(filepath.Join(filePath, "delivery.json"))
+
+	workflowseqcontent, err := os.ReadFile(filepath.Join("..", "config", "workflows", id+".json"))
+	var workflowseqjson eventsequence
+
+	if err := json.Unmarshal(workflowseqcontent, &workflowseqjson); err != nil {
+		panic(err)
+	}
 
 	eventmapcontent, err := os.ReadFile(filepath.Join("..", "config", "workflowmap.json"))
 
@@ -43,55 +51,30 @@ func loadData(id string) error {
 
 		switch values {
 
-		case ("sessionstartcontent"):
+		case ("sessionstart"):
 			event_ref_mapping[key] = &sessionstartcontent
-		case ("sessionstopcontent"):
+		case ("sessionstop"):
 			event_ref_mapping[key] = &sessionstopcontent
-		case ("assignmentstartcontent"):
+		case ("assignmentstart"):
 			event_ref_mapping[key] = &assignmentstartcontent
-		case ("assignmentstopcontent"):
+		case ("assignmentstop"):
 			event_ref_mapping[key] = &assignmentstopcontent
-		case ("pickcontent"):
+		case ("pick"):
 			event_ref_mapping[key] = &pickcontent
-		case ("travelcontent"):
+		case ("travel"):
 			event_ref_mapping[key] = &travelcontent
-		case ("breakcontent"):
+		case ("break"):
 			event_ref_mapping[key] = &breakcontent
-		case ("deliverycontent"):
+		case ("delivery"):
 			event_ref_mapping[key] = &deliverycontent
 		}
 	}
 
-	// Azure Event Hub connection string
-	eventHubConnStr := os.Getenv("EVENTHUB_CONNECTION_STRING")
-	if eventHubConnStr == "" {
-		return fmt.Errorf("EVENTHUB_CONNECTION_STRING not set")
+	err_t := transformData(id, &event_ref_mapping, workflowseqjson.Workflowsequence)
+
+	if err_t != nil {
+		panic(err_t)
 	}
 
-	// Event Hub name
-	eventHubName := "your_event_hub_name" // Replace with your Event Hub name
-
-	// Create an Event Hub client
-	hub, err := eventhubs.NewHubFromConnectionString(eventHubConnStr, eventHubName)
-	if err != nil {
-		return fmt.Errorf("error creating Event Hub client: %v", err)
-	}
-
-	// Serialize data to JSON
-	messageBody, err := json.Marshal(data)
-	if err != nil {
-		return fmt.Errorf("error serializing data to JSON: %v", err)
-	}
-
-	// Create an event to be sent
-	event := eventhubs.NewEventFromString(string(messageBody))
-
-	// Send the event
-	err = hub.Send(context.Background(), event)
-	if err != nil {
-		return fmt.Errorf("error sending event to Event Hub: %v", err)
-	}
-
-	fmt.Println("Data sent to Event Hub successfully")
 	return nil
 }

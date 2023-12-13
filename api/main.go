@@ -1,6 +1,7 @@
 package main
 
 import (
+	"datasimulator/src"
 	"encoding/json"
 	"fmt"
 	"io"
@@ -31,11 +32,11 @@ func workflowHandler(w http.ResponseWriter, r *http.Request) {
 
 func simulateHandler(w http.ResponseWriter, r *http.Request) {
 	// Extracting the ID from the URL path
-	id := strings.TrimPrefix(r.URL.Path, "/api/workflow/")
-
+	id := strings.TrimPrefix(r.URL.Path, "/api/simulate/")
+	id = "1"
 	switch r.Method {
 	case http.MethodPost:
-		Simulatedata(w, r, id)
+		src.LoadData(w, r, id)
 	default:
 		http.Error(w, "Method not allowed", http.StatusMethodNotAllowed)
 	}
